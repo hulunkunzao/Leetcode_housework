@@ -1,0 +1,12 @@
+//网址：https://leetcode.cn/problems/sum-of-all-odd-length-subarrays/
+class Solution {
+public:
+    int sumOddLengthSubarrays(vector<int>& arr) {
+        int ans=0;
+        for(int i = 0;i<arr.size();++i){
+            int l_len=i,r_len=arr.size()-i-1;
+            ans+=(arr[i]*(l_len/2+1)*(r_len/2+1)+arr[i]*((l_len+1)/2)*((r_len+1)/2));
+        }
+        return ans;
+    }
+};
