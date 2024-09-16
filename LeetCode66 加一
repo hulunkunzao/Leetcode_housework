@@ -1,0 +1,20 @@
+//LeetCode66 加一 网址：https://leetcode.cn/problems/plus-one/
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        ++digits[digits.size()-1];
+        int id = digits.size()-1;
+        while(id>0){
+            if(digits[id]>=10){
+                ++digits[id-1];
+                digits[id]=digits[id]%10;
+            }
+            --id;
+        }
+        if(digits[0]>=10){
+            digits[0]=digits[0]%10;
+            digits.insert(digits.begin(),1);
+        }
+        return digits;
+    }
+};
