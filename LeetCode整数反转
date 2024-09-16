@@ -1,0 +1,56 @@
+//网址：https://leetcode.cn/problems/reverse-integer/
+class Solution {
+public:
+    int reverse(int x) {
+        int max[10]={2,1,4,7,4,8,3,6,4,7},min[10]={2,1,4,7,4,8,3,6,4,8};
+        stack<int>s,s1;
+        bool flag = false;
+        if(x<0){
+            flag = true;
+            if(x==-2147483648){
+                return 0;
+            }
+            x=-x;
+        }
+        while(x){
+            s.push(x%10);
+            s1.push(x%10);
+            x/=10;
+        }
+        while(s.top()==0){
+            s.pop();
+            s1.pop();
+        }
+        if(s.size()<10){
+            int ans = 0;
+            while(s1.size()){
+                ans=ans*10+s1.top();
+                s1.pop();
+            }
+            if(flag){
+                return -ans;
+            }else{
+                return ans;
+            }
+        }else{
+            while(s.size()){
+                if(s.top()>max[10-s.size()]&&flag==false){
+                    return 0;
+                }else if(s.top()>min[10-s.size()]&&flag){
+                    return 0;
+                }
+                s.pop();
+            }
+            int ans=0;
+            while(s1.size()){
+                ans=ans*10+s1.top();
+                s1.pop();
+            }
+            if(flag){
+                return -ans;
+            }else{
+                return ans;
+            }
+        }
+    }
+};
